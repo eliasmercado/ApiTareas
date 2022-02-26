@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "599d11b5-5433-48c8-b338-6b1e2ee80ad1",
+		"name": "ApiTareas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"tokenAutorizacion\", json.data);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\" : \"edge\",\r\n    \"password\" : \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-app}}/api/login",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tareas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenAutorizacion}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url-app}}/api/tarea",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"tarea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Tarea por Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenAutorizacion}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url-app}}/api/tarea/1",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"tarea",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Tarea",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenAutorizacion}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\":\"Primera tarea\",\r\n    \"descripcion\": \"descripcion\",\r\n    \"fechaEntrega\" : \"2022-01-25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-app}}/api/tarea",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"tarea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tarea",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenAutorizacion}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"nombre\":\"Primera tarea modificada\",\r\n    \"descripcion\": \"descripcion tarea modificada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-app}}/api/tarea/1",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"tarea",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tarea",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenAutorizacion}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url-app}}/api/tarea/1",
+					"host": [
+						"{{url-app}}"
+					],
+					"path": [
+						"api",
+						"tarea",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
